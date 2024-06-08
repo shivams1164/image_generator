@@ -4,7 +4,9 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const imageRouter = require('./routes/imageRouter');
 const authRouter = require('./routes/authRouter');
-const contactRouter = require('./routes/contactRoutes'); 
+const contactRouter = require('./routes/contactRoutes');
+require('dotenv').config();
+
 
 const app = express();
 app.use('/images', express.static(path.join(__dirname, "/uploads")));
@@ -21,7 +23,8 @@ app.use((req, res, next) => {
         console.log('Received token:', token);
 
         try {
-            jwt.verify(token, process.env.SECRET);
+            const SECRET = process.env.SECRET
+            jwt.verify(token, SECRET);
             next();
         } catch (e) {
             console.log('JWT verification error:', e);
@@ -38,7 +41,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1/images', imageRouter);
-app.use('/api/v1/contact', contactRouter); 
+app.use('/api/v1/contact', contactRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

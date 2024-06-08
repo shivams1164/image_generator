@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import './ImageGenerator.css';
 import Navbar from '../Navbar/Navbar';
 import PointsContext from '../../context/pointsContext';
+require('dotenv').config();
+
 
 const ImageGenerator = () => {
     const [data, setData] = useState("");
@@ -13,7 +15,9 @@ const ImageGenerator = () => {
         if (!query) return;
 
         try {
-            const res = await fetch(`${process.env.BACKEND_URL}/api/v1/images`, {
+            const BACKEND_URL = process.env.BACKEND_URL
+
+            const res = await fetch(`${BACKEND_URL}/api/v1/images`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

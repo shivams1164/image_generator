@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './Contact.css';
+require('dotenv').config();
+
 
 const Contact = () => {
     const [name, setName] = useState('');
@@ -16,7 +18,8 @@ const Contact = () => {
         }
 
         try {
-            const response = await fetch(`${process.env.BACKEND_URL}/api/v1/contact`, {
+            const BACKEND_URL = process.env.BACKEND_URL
+            const response = await fetch(`${BACKEND_URL}/api/v1/contact`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
