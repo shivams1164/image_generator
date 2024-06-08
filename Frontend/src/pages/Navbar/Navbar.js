@@ -17,7 +17,7 @@ const Navbar = (props) => {
         { key: 'home', url: '/', name: 'Home' },
         { key: 'image', url: '/image-generator', name: 'Image Generator' },
         { key: 'history', url: '/history', name: 'History' },
-        { key: 'contact', url: '/contact', name: 'Contact' },
+        // { key: 'contact', url: '/contact', name: 'Contact' },
         // { key: 'login', url: '/login', name: 'Login' },
         { key: 'signup', url: '/signup', name: 'Sign Up' },
     ];
