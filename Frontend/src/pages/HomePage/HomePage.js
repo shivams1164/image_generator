@@ -30,8 +30,8 @@ const HomePage = () => {
                         </div>
                     </div>
                     <div className="homepage-buttons">
-                        <button onClick={() => window.location.href = '/image-generator'}>Generate Images</button>
-                        <button onClick={() => window.location.href = '/history'}>View History</button>
+                        {/* <button onClick={() => window.location.href = '/image-generator'}>Generate Images</button>
+                        <button onClick={() => window.location.href = '/history'}>View History</button> */}
                     </div>
                 </div>
 
