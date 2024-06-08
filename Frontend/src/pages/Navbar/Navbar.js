@@ -4,11 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import PointsContext from '../../context/pointsContext';
 
 const Navbar = (props) => {
-    const activeStyle = {
-        color: 'red',
-        textDecoration: 'underline'
-    };
     const navigate = useNavigate();
+    const ctx = useContext(PointsContext);
 
     const logout = () => {
         localStorage.removeItem('authToken');
@@ -21,29 +18,27 @@ const Navbar = (props) => {
         { key: 'image', url: '/image-generator', name: 'Image Generator' },
         { key: 'history', url: '/history', name: 'History' },
         { key: 'contact', url: '/contact', name: 'Contact' },
-        { key: 'login', url: '/login', name: 'Login' },
+        // { key: 'login', url: '/login', name: 'Login' },
         { key: 'signup', url: '/signup', name: 'Sign Up' },
     ];
 
-    const ctx = useContext(PointsContext);
-
     return (
-        <div className='header-container'>
-            <div className='left'>
+        <div className='navbar-container'>
+            <div className='navbar-links'>
                 {links.map(link => (
-                    <Link key={link.key} style={props.page === link.key ? activeStyle : {}} to={link.url}>
+                    <Link key={link.key} className='navbar-link' to={link.url} style={props.page === link.key ? { color: 'red', textDecoration: 'underline' } : {}}>
                         {link.name}
                     </Link>
                 ))}
             </div>
-            <div className='right'>
-                {ctx.userPoints}
-            </div>
-            <div>
+            <div className='navbar-user'>
                 {ctx.isLoggedIn ? (
-                    <button onClick={logout}>Logout</button>
+                    <div>
+                        <span className='navbar-points'>Points: {ctx.userPoints}</span>
+                        <button className='navbar-button' onClick={logout}>Logout</button>
+                    </div>
                 ) : (
-                    <button onClick={() => navigate('/login')}>Login</button>
+                    <button className='navbar-button' onClick={() => navigate('/login')}>Login</button>
                 )}
             </div>
         </div>

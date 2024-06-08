@@ -1,19 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const imageSchema = new mongoose.Schema({
     query: {
         type: String,
-        required: [true, 'Query is required']
-    },
-    userId: {
-        type: String,
-        required: [true, 'User Id is required'],
-        default: 'default-user'
+        required: true
     },
     image: {
         type: String,
-        required: [true, 'Image is required']
+        required: true
     },
+
     createdAt: {
         type: Date,
         default: Date.now()
@@ -22,8 +18,8 @@ const imageSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     }
-})
+});
 
-const imageModel = mongoose.model('ai-images', imageSchema)
+const Image = mongoose.model('Image', imageSchema);
 
-module.exports = imageModel
+module.exports = Image;

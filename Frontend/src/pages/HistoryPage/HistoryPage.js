@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './HistoryPage.css';
 import HistoryCard from './HistoryCard';
-
+require('dotenv').config();
 const HistoryPage = () => {
     const [data, setData] = useState([]);
     const [search, setSearch] = useState('');
 
     const getData = async () => {
         try {
-            const response = await fetch(`http://localhost:1400/api/v1/images`, {
+            const BACKEND_URL = process.env.BACKEND_URL
+            const response = await fetch(`${BACKEND_URL}/api/v1/images`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
