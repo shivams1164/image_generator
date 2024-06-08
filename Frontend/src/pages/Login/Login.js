@@ -3,6 +3,8 @@ import Navbar from '../Navbar/Navbar';
 import PointsContext from '../../context/pointsContext';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+require('dotenv').config();
+
 
 const Login = () => {
     const ctx = useContext(PointsContext);
@@ -18,7 +20,8 @@ const Login = () => {
         }
         setError('');
         try {
-            const response = await fetch(`http://localhost:1400/api/v1/auth/${email}&${password}`);
+            const BACKEND_URL = process.env.BACKEND_URL
+            const response = await fetch(`${BACKEND_URL}/${email}&${password}`);
             const data = await response.json();
             if (response.status === 200) {
                 ctx.setIsLoggedIn(true);
