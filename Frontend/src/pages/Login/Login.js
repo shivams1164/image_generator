@@ -21,7 +21,7 @@ const Login = () => {
         setError('');
         try {
             const BACKEND_URL = process.env.BACKEND_URL
-            const response = await fetch(`${BACKEND_URL}/${email}&${password}`);
+            const response = await fetch(`${BACKEND_URL}/api/auth/${email}&${password}`);
             const data = await response.json();
             if (response.status === 200) {
                 ctx.setIsLoggedIn(true);
